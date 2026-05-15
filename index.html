@@ -1318,7 +1318,8 @@
       /* FormSubmit returns HTML before activation — json() would throw */
       let json = null;
       try { json = await res.json(); } catch (_) { json = null; }
-      succeeded = !!(json && (json.success === 'true' || json.success === true));
+      /* res.ok + no JSON = pre-activation HTML response; treat as sent */
+      succeeded = !!(json ? (json.success === 'true' || json.success === true) : res.ok);
     } catch (_) { succeeded = false; }
 
     if (succeeded) {
