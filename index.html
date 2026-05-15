@@ -392,15 +392,67 @@
       .badge-label{font-size:0.6rem;}
     }
     @media(max-width:600px){
-      .section-wrap{padding:4rem 0;}
-      .hero-img-wrap{width:210px;height:265px;}
-      /* Pull badges out of the image — display as a row below it */
-      .hero-right{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:0.5rem;}
-      .hero-avatar{grid-column:1 / -1;}
-      .hero-badge{position:static;border-radius:10px;min-width:0;padding:0.45rem 0.65rem;left:auto;right:auto;top:auto;bottom:auto;}
-      .badge-cgpa .bv,.badge-ibm .bv{font-size:0.8rem;}
+      .section-wrap{padding:3.5rem 0;}
+      .section-inner{padding:0 1.1rem;}
+      /* Hero image: pull badges out below image using hero-img-wrap as grid */
+      .hero-img-wrap{display:grid;grid-template-columns:1fr 1fr;width:100%;height:auto;gap:0.5rem;}
+      .hero-img-bg{display:none;}
+      .hero-avatar{grid-column:1 / -1;width:100%;height:255px;border-radius:20px;}
+      .hero-badge{position:static;min-width:0;padding:0.45rem 0.65rem;left:auto;right:auto;top:auto;bottom:auto;}
+      .badge-cgpa .bv,.badge-ibm .bv{font-size:0.82rem;}
       .badge-label{font-size:0.6rem;}
+      /* Hero text overflow fix */
+      .hero-eyebrow{font-size:0.68rem;padding:0.28rem 0.7rem;max-width:100%;}
+      .hero-stats{gap:1rem;flex-wrap:wrap;}
+      .hero-title{font-size:clamp(2rem,8vw,2.8rem);}
+      /* Cards tighter on mobile */
+      .contact-form{padding:1.25rem;}
+      .skill-category{padding:1.25rem;}
+      .timeline-content{padding:0.85rem 1rem;}
+      .about-img-card{padding:1.25rem;}
+      /* Skills grid single column */
+      .skills-grid{grid-template-columns:1fr;}
+      /* Skill tags: prevent overflow */
+      .skill-tags{gap:0.35rem;}
+      .skill-tag{font-size:0.7rem;padding:0.24rem 0.55rem;}
+      /* Timeline spacing */
+      .timeline::before{left:14px;}
+      .timeline-dot{width:28px;height:28px;}
+      .timeline-dot svg{width:13px;height:13px;}
+      /* Awards: single column */
+      .awards-grid{grid-template-columns:1fr;}
+      /* Contact form: ensure full width */
+      .form-input,.form-textarea{font-size:0.85rem;}
     }
+    /* ── Resume Button ── */
+    .btn-resume{background:transparent;border:2px solid var(--emerald);color:var(--emerald);padding:0.76rem 1.75rem;border-radius:50px;font-weight:700;font-size:0.88rem;cursor:pointer;transition:var(--t);display:inline-flex;align-items:center;gap:0.5rem;font-family:'Outfit',sans-serif;letter-spacing:0.02em;}
+    .btn-resume svg{width:16px;height:16px;transition:transform 0.3s ease;}
+    .btn-resume:hover{background:var(--emerald);color:#030d08;transform:translateY(-2px);box-shadow:0 12px 30px rgba(52,211,153,0.35);}
+    .btn-resume:hover svg{transform:translateY(2px);}
+
+    /* ── Currently Exploring ── */
+    .exploring-wrap{margin-top:3rem;}
+    .exploring-card{background:linear-gradient(135deg,rgba(52,211,153,0.05),rgba(251,191,36,0.03));border:1px solid rgba(52,211,153,0.18);border-radius:var(--radius);padding:1.25rem 1.75rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;transition:var(--t);}
+    .exploring-card:hover{border-color:rgba(52,211,153,0.35);box-shadow:0 8px 32px rgba(52,211,153,0.08);}
+    .exploring-header{display:flex;align-items:center;gap:0.65rem;flex-shrink:0;}
+    .exploring-dot{width:8px;height:8px;border-radius:50%;background:var(--emerald);animation:pulse 2s infinite;flex-shrink:0;}
+    .exploring-title{font-family:'Outfit',sans-serif;font-weight:900;font-size:0.88rem;color:var(--emerald);white-space:nowrap;letter-spacing:0.02em;}
+    .exploring-tags{display:flex;flex-wrap:wrap;gap:0.45rem;}
+    .exp-tag{background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);color:var(--emerald);font-size:0.75rem;font-weight:700;padding:0.28rem 0.8rem;border-radius:50px;letter-spacing:0.02em;transition:var(--t);}
+    .exp-tag:hover{background:rgba(52,211,153,0.18);transform:translateY(-2px);}
+    @media(max-width:600px){
+      .exploring-card{flex-direction:column;align-items:flex-start;gap:0.85rem;padding:1rem 1.25rem;}
+    }
+
+    /* ── Enhanced hover glows ── */
+    .project-card:hover{box-shadow:0 28px 56px rgba(0,0,0,0.45),0 0 0 1px rgba(52,211,153,0.12),0 0 40px rgba(52,211,153,0.06);}
+    .skill-category:hover{box-shadow:0 20px 40px rgba(0,0,0,0.3),0 0 30px rgba(52,211,153,0.06);}
+    .milestone-card:hover{box-shadow:0 16px 32px rgba(0,0,0,0.3),0 0 20px rgba(52,211,153,0.06);}
+    .contact-link:hover{box-shadow:0 8px 24px rgba(52,211,153,0.12);}
+
+    /* ── Counter animation ── */
+    .stat-num{transition:opacity 0.2s;}
+
     /* ── Skip to content (accessibility) ── */
     .skip-link{position:absolute;top:-100px;left:1rem;z-index:9999;background:var(--emerald);color:#030d08;padding:0.5rem 1rem;border-radius:0 0 8px 8px;font-weight:700;font-size:0.85rem;transition:top 0.2s ease;}
     .skip-link:focus{top:0;}
@@ -472,13 +524,17 @@
       </h1>
       <p class="hero-tagline">I build intelligent data systems and AI-powered applications — on a deliberate path to becoming a Generative AI Engineer.</p>
       <div class="hero-stats">
-        <div class="stat"><div class="stat-num">3.55</div><div class="stat-label">CGPA / 4.0</div></div>
-        <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Projects</div></div>
+        <div class="stat"><div class="stat-num" data-count="3.55" data-decimals="2">3.55</div><div class="stat-label">CGPA / 4.0</div></div>
+        <div class="stat"><div class="stat-num" data-count="6" data-suffix="+">6+</div><div class="stat-label">Projects</div></div>
         <div class="stat"><div class="stat-num">IBM</div><div class="stat-label">Certified</div></div>
-        <div class="stat"><div class="stat-num">2</div><div class="stat-label">Publications</div></div>
+        <div class="stat"><div class="stat-num" data-count="2">2</div><div class="stat-label">Publications</div></div>
       </div>
       <div class="hero-btns">
         <a href="#projects" class="btn-primary">View Projects →</a>
+        <a href="https://drive.google.com/file/d/YOUR_RESUME_FILE_ID/view" target="_blank" rel="noopener noreferrer" class="btn-resume">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Resume
+        </a>
         <a href="mailto:mrkhondokar.prof@gmail.com" class="btn-outline">✉ Contact Me</a>
       </div>
     </div>
@@ -634,6 +690,23 @@
           </div>
         </div>
       </div>
+
+      <!-- Currently Exploring -->
+      <div class="exploring-wrap fade-in-up">
+        <div class="exploring-card">
+          <div class="exploring-header">
+            <div class="exploring-dot"></div>
+            <span class="exploring-title">Currently Exploring</span>
+          </div>
+          <div class="exploring-tags">
+            <span class="exp-tag">RAG Pipelines</span>
+            <span class="exp-tag">LangChain</span>
+            <span class="exp-tag">Fine-tuning LLMs</span>
+            <span class="exp-tag">AI Agents</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1344,6 +1417,33 @@
       }
     }, 6000);
   });
+
+  /* Stat counter animation — triggers once on scroll into view */
+  (function(){
+    const els = document.querySelectorAll('.stat-num[data-count]');
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target   = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimals || '0');
+        const suffix   = el.dataset.suffix || '';
+        const duration = 1400;
+        const start    = performance.now();
+        function tick(now) {
+          let t = Math.min((now - start) / duration, 1);
+          t = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+          el.textContent = (target * t).toFixed(decimals) + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = target.toFixed(decimals) + suffix;
+        }
+        requestAnimationFrame(tick);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    els.forEach(el => io.observe(el));
+  })();
 
   /* Badge cycling — key stats & credentials rotating smoothly */
   (function () {
