@@ -1273,7 +1273,7 @@
     });
   })();
 
-  /* Contact form — sends via FormSubmit */
+  /* Contact form — sends via Web3Forms (works on localhost + GitHub Pages) */
   document.getElementById('contactForm').addEventListener('submit', async function (e) {
     e.preventDefault();
     const btn    = document.getElementById('formSubmitBtn');
@@ -1295,31 +1295,30 @@
     btn.textContent = 'Sending…';
     status.style.display = 'none';
 
-    /* Email assembled at runtime to reduce harvesting by scrapers */
-    const ep  = ['mrkhondokar', '.prof@', 'gmail', '.com'].join('');
+    const ep     = ['mrkhondokar', '.prof@', 'gmail', '.com'].join('');
     const mailto = `mailto:${ep}?subject=${encodeURIComponent('Portfolio Contact: ' + subject)}&body=${encodeURIComponent(message)}`;
+
+    /* ── Web3Forms ──────────────────────────────────────────────────────────
+       Get your free access key at https://web3forms.com → enter your email.
+       Replace the placeholder below with your key (no activation step needed).
+    ──────────────────────────────────────────────────────────────────────── */
+    const WEB3FORMS_KEY = '514127';
 
     let succeeded = false;
     try {
-      /* FormSubmit AJAX — proper CORS + JSON response.
-         ⚠ First-time use: FormSubmit sends ONE activation email to your inbox.
-         Click "Activate Form" in that email — then all submissions arrive. */
-      const res  = await fetch(`https://formsubmit.co/ajax/${ep}`, {
+      const res  = await fetch('https://api.web3forms.com/submit', {
         method : 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body   : JSON.stringify({
+          access_key: WEB3FORMS_KEY,
           name, email, message,
-          _subject : `Portfolio Contact: ${subject}`,
-          _template: 'table',
-          _replyto : email,
-          _honey   : ''          /* honeypot — bots fill this, humans don't */
+          subject: `Portfolio Contact: ${subject}`,
+          replyto: email,
+          botcheck: ''
         })
       });
-      /* FormSubmit returns HTML before activation — json() would throw */
-      let json = null;
-      try { json = await res.json(); } catch (_) { json = null; }
-      /* res.ok + no JSON = pre-activation HTML response; treat as sent */
-      succeeded = !!(json ? (json.success === 'true' || json.success === true) : res.ok);
+      const json = await res.json();
+      succeeded = !!(json && json.success);
     } catch (_) { succeeded = false; }
 
     if (succeeded) {
