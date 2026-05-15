@@ -383,16 +383,21 @@
       .contact-body{grid-template-columns:1fr;gap:2rem;}
       .nav-links,.nav-cta{display:none;}
       .hamburger{display:flex;}
-      /* Tuck badges inside the card at bottom corners — face stays clear */
-      .badge-cgpa{left:8px;bottom:16px;top:auto;}
-      .badge-ibm{right:8px;bottom:16px;top:auto;left:auto;}
+      /* Scroll hint overlaps buttons when hero stacks — hide it */
+      .scroll-ind{display:none;}
+      /* Badges: one top-right, one bottom-left — face stays clear, no collision */
+      .badge-cgpa{left:8px;bottom:14px;top:auto;min-width:0;padding:0.35rem 0.6rem;}
+      .badge-ibm{right:8px;top:14px;bottom:auto;left:auto;min-width:0;padding:0.35rem 0.6rem;}
+      .badge-cgpa .bv,.badge-ibm .bv{font-size:0.88rem;}
+      .badge-label{font-size:0.6rem;}
     }
     @media(max-width:600px){
       .section-wrap{padding:4rem 0;}
       .hero-img-wrap{width:210px;height:265px;}
-      /* Move both badges to bottom corners so they never cover the face */
-      .badge-cgpa{bottom:10px;left:8px;top:auto;}
-      .badge-ibm{bottom:10px;right:8px;top:auto;left:auto;}
+      .badge-cgpa{bottom:10px;left:6px;top:auto;min-width:0;padding:0.3rem 0.5rem;}
+      .badge-ibm{top:10px;right:6px;bottom:auto;left:auto;min-width:0;padding:0.3rem 0.5rem;}
+      .badge-cgpa .bv,.badge-ibm .bv{font-size:0.8rem;}
+      .badge-label{font-size:0.58rem;}
     }
     /* ── Skip to content (accessibility) ── */
     .skip-link{position:absolute;top:-100px;left:1rem;z-index:9999;background:var(--emerald);color:#030d08;padding:0.5rem 1rem;border-radius:0 0 8px 8px;font-weight:700;font-size:0.85rem;transition:top 0.2s ease;}
@@ -403,6 +408,10 @@
     #backToTop.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
     #backToTop:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(52,211,153,0.5);}
     #backToTop svg{width:18px;height:18px;color:#030d08;}
+    @media(max-width:600px){
+      #backToTop{width:36px;height:36px;bottom:1rem;right:1rem;}
+      #backToTop svg{width:14px;height:14px;}
+    }
   </style>
   <!-- Respect OS dark/light preference on first load -->
   <script>
@@ -1180,10 +1189,12 @@
     if (e.key === 'Escape') { closeMobileNav(); hamburgerBtn.focus(); }
   });
 
-  /* Back to Top */
+  /* Back to Top — hide when near page bottom (avoids covering footer icons) */
   const btt = document.getElementById('backToTop');
   window.addEventListener('scroll', () => {
-    btt.classList.toggle('visible', window.scrollY > 400);
+    const scrolled   = window.scrollY;
+    const nearBottom = (window.innerHeight + scrolled) >= (document.body.scrollHeight - 120);
+    btt.classList.toggle('visible', scrolled > 400 && !nearBottom);
   });
   btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
@@ -1219,7 +1230,7 @@
   });
 
   /* Role typewriter */
-  const roles = ['AI Engineer', 'Data Scientist', 'ML Researcher', 'GenAI Builder', 'LLM Developer'];
+  const roles = ['AI Engineer', 'ML Researcher', 'GenAI Builder', 'LLM Developer', 'Python Developer'];
   let ri = 0;
   const roleEl = document.getElementById('heroRole');
   setInterval(() => {
@@ -1285,32 +1296,30 @@
     status.style.display = 'none';
 
     /* Email assembled at runtime to reduce harvesting by scrapers */
-    const ep = ['mrkhondokar', '.prof@', 'gmail', '.com'].join('');
+    const ep  = ['mrkhondokar', '.prof@', 'gmail', '.com'].join('');
+    const mailto = `mailto:${ep}?subject=${encodeURIComponent('Portfolio Contact: ' + subject)}&body=${encodeURIComponent(message)}`;
 
     let succeeded = false;
     try {
-      /* FormSubmit AJAX endpoint — supports CORS, returns JSON.
-         IMPORTANT: on the very first submission, FormSubmit sends a
-         one-time activation email to your inbox. Click that link once
-         and all future messages will be delivered. */
-      const res = await fetch(`https://formsubmit.co/ajax/${ep}`, {
+      /* FormSubmit AJAX — proper CORS + JSON response.
+         ⚠ First-time use: FormSubmit sends ONE activation email to your inbox.
+         Click "Activate Form" in that email — then all submissions arrive. */
+      const res  = await fetch(`https://formsubmit.co/ajax/${ep}`, {
         method : 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept'       : 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body   : JSON.stringify({
+          name, email, message,
           _subject : `Portfolio Contact: ${subject}`,
           _template: 'table',
-          _replyto : email
+          _replyto : email,
+          _honey   : ''          /* honeypot — bots fill this, humans don't */
         })
       });
-      const json = await res.json();
-      succeeded = json.success === 'true' || json.success === true;
-    } catch(_) { succeeded = false; }
+      /* FormSubmit returns HTML before activation — json() would throw */
+      let json = null;
+      try { json = await res.json(); } catch (_) { json = null; }
+      succeeded = !!(json && (json.success === 'true' || json.success === true));
+    } catch (_) { succeeded = false; }
 
     if (succeeded) {
       btn.textContent = 'Message Sent ✓';
@@ -1319,7 +1328,7 @@
       this.reset();
     } else {
       btn.textContent = 'Send Message ✈';
-      status.textContent = 'Something went wrong. Please email me directly at mrkhondokar[dot]prof@gmail[dot]com';
+      status.innerHTML = `Delivery failed — <a href="${mailto}" style="color:inherit;text-decoration:underline;">click here to email directly</a> instead.`;
       status.className = 'form-status error';
     }
 
