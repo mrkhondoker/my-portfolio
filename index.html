@@ -585,7 +585,7 @@
     #cursorGlow{position:fixed;pointer-events:none;z-index:9998;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(52,211,153,0.055) 0%,transparent 70%);transform:translate(-50%,-50%);transition:opacity 0.4s ease;opacity:0;will-change:transform;}
 
     /* ── Hero dot-grid background ── */
-    #home::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(52,211,153,0.12) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 30%,transparent 80%);mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 30%,transparent 80%);pointer-events:none;z-index:0;}
+    #home::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(52,211,153,0.07) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 30%,transparent 80%);mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 30%,transparent 80%);pointer-events:none;z-index:0;}
 
     /* ── Line-accent shimmer ── */
     @keyframes shimmerSlide{0%{background-position:200% center}100%{background-position:-200% center}}
@@ -593,7 +593,7 @@
 
     /* ── Enhanced exploring-card animated border ── */
     .exploring-card{position:relative;overflow:hidden;}
-    .exploring-card::before{content:'';position:absolute;inset:-1px;border-radius:calc(var(--radius) + 1px);background:conic-gradient(from var(--angle,0deg),transparent 70%,rgba(52,211,153,0.5) 80%,rgba(251,191,36,0.4) 90%,transparent 100%);z-index:-1;animation:rotateBorder 4s linear infinite;opacity:0.6;}
+    .exploring-card::before{content:'';position:absolute;inset:-1px;border-radius:calc(var(--radius) + 1px);background:conic-gradient(from var(--angle,0deg),transparent 70%,rgba(52,211,153,0.45) 80%,rgba(251,191,36,0.35) 90%,transparent 100%);z-index:-1;animation:rotateBorder 7s linear infinite;opacity:0.4;}
     @property --angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
     @keyframes rotateBorder{to{--angle:360deg;}}
 
@@ -624,7 +624,7 @@
     /* ── Light mode overrides for premium visual features ── */
     [data-theme="light"] #scrollProgress{background:linear-gradient(135deg,#059669 0%,#0d9488 100%);box-shadow:0 0 8px rgba(5,150,105,0.45);}
     [data-theme="light"] #cursorGlow{background:radial-gradient(circle,rgba(13,110,85,0.05) 0%,transparent 70%);}
-    [data-theme="light"] #home::before{background-image:radial-gradient(rgba(13,110,85,0.1) 1px,transparent 1px);}
+    [data-theme="light"] #home::before{background-image:radial-gradient(rgba(13,110,85,0.065) 1px,transparent 1px);}
     [data-theme="light"] .exploring-card::before{background:conic-gradient(from var(--angle,0deg),transparent 70%,rgba(5,150,105,0.4) 80%,rgba(180,83,9,0.3) 90%,transparent 100%);}
     [data-theme="light"] .project-card .card-inner-glow{background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(13,110,85,0.06) 0%,transparent 65%);}
     [data-theme="light"] .timeline-item:hover .timeline-dot{box-shadow:0 0 0 6px rgba(13,110,85,0.12),0 0 18px rgba(13,110,85,0.22);transform:scale(1.25);}
@@ -721,8 +721,69 @@
     /* ── Project link hover glow ── */
     .project-link:hover{text-shadow:0 0 16px rgba(52,211,153,0.35);}
 
-    /* ── Remove transform-style:preserve-3d (handled by inline perspective in JS) ── */
+    /* ── transform-style: standard (perspective handled via inline JS) ── */
     .project-card{transform-style:flat;}
+
+    /* ═══════════════════════════════════════════════════════
+       FINAL POLISH — ONE VISUAL SYSTEM
+       ═══════════════════════════════════════════════════════ */
+
+    /* ── Unified reveal easing (spring, not ease) ── */
+    .fade-in-up{transition:opacity 0.72s cubic-bezier(0.16,1,0.3,1),transform 0.72s cubic-bezier(0.16,1,0.3,1),filter 0.72s cubic-bezier(0.16,1,0.3,1);}
+    /* Stagger grid items match reveal easing */
+    .skills-grid .skill-category,.projects-grid .project-card{transition:opacity 0.68s cubic-bezier(0.16,1,0.3,1),transform 0.68s cubic-bezier(0.16,1,0.3,1);}
+
+    /* ── Hero avatar: breathing ambient glow ── */
+    .hero-img-bg{opacity:0.15;filter:blur(10px);animation:morphBlob 9s ease-in-out infinite alternate,heroImgBreath 4.5s ease-in-out infinite alternate;}
+    @keyframes heroImgBreath{0%{opacity:0.09;transform:scale(0.96)}100%{opacity:0.22;transform:scale(1.04)}}
+
+    /* ── HeroRole blinking cursor ── */
+    #heroRole::after{content:'|';font-weight:200;margin-left:3px;color:var(--emerald);animation:blink 1.1s step-end infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+    /* ── Cinematic scroll indicator ── */
+    .scroll-ind{opacity:0.6;animation:floatAnim 3.2s cubic-bezier(0.4,0,0.2,1) infinite;}
+    .scroll-line{overflow:hidden;height:50px;}
+    .scroll-line::after{content:'';display:block;width:1px;height:50px;background:var(--emerald);animation:scrollTravel 2.4s cubic-bezier(0.4,0,0.6,1) infinite;transform:translateY(-100%);}
+    @keyframes scrollTravel{0%{transform:translateY(-100%);opacity:0}20%{opacity:1}80%{opacity:0.5}100%{transform:translateY(100%);opacity:0}}
+
+    /* ── Project link: pill button ── */
+    .project-link{padding:0.3rem 0.78rem;border:1px solid rgba(52,211,153,0.2);border-radius:50px;background:rgba(52,211,153,0.04);transition:background 0.25s cubic-bezier(0.4,0,0.2,1),border-color 0.25s cubic-bezier(0.4,0,0.2,1),gap 0.25s cubic-bezier(0.4,0,0.2,1),box-shadow 0.25s cubic-bezier(0.4,0,0.2,1);}
+    .project-link:hover{background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.4);box-shadow:0 0 16px rgba(52,211,153,0.15);text-shadow:none;gap:0.52rem;}
+    [data-theme="light"] .project-link{border-color:rgba(13,110,85,0.18);background:rgba(13,110,85,0.04);}
+    [data-theme="light"] .project-link:hover{background:rgba(13,110,85,0.09);border-color:rgba(13,110,85,0.38);box-shadow:0 0 16px rgba(13,110,85,0.1);}
+
+    /* ── Featured tag: styled to match pill ── */
+    .feat-tag{font-size:0.67rem;font-weight:700;color:var(--amber);background:rgba(251,191,36,0.07);border:1px solid rgba(251,191,36,0.22);padding:0.25rem 0.65rem;border-radius:50px;letter-spacing:0.04em;transition:var(--t);}
+    .project-card:hover .feat-tag{background:rgba(251,191,36,0.12);border-color:rgba(251,191,36,0.38);}
+    [data-theme="light"] .feat-tag{background:rgba(180,83,9,0.06);border-color:rgba(180,83,9,0.2);}
+
+    /* ── Btn will-change for GPU hints ── */
+    .btn-primary,.btn-secondary{will-change:transform,box-shadow;}
+
+    /* ── Consistent card hover transforms ── */
+    .skill-category:hover{transition:transform 0.35s cubic-bezier(0.16,1,0.3,1),box-shadow 0.35s cubic-bezier(0.4,0,0.2,1),border-color 0.3s cubic-bezier(0.4,0,0.2,1);}
+    .edu-card:hover{transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),box-shadow 0.3s cubic-bezier(0.4,0,0.2,1),border-color 0.3s cubic-bezier(0.4,0,0.2,1);}
+    .cert-card:hover{transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),box-shadow 0.3s cubic-bezier(0.4,0,0.2,1),border-color 0.3s cubic-bezier(0.4,0,0.2,1);}
+
+    /* ── Mobile: disable heavy effects ── */
+    @media(hover:none){
+      .fade-in-up{filter:none!important;}
+      .fade-in-up.visible{filter:none;}
+      #particleCanvas{display:none;}
+      body::after{display:none;}
+      .hero-img-bg{animation:morphBlob 9s ease-in-out infinite alternate!important;}
+      .hero-title{font-size:clamp(2rem,7.5vw,2.6rem)!important;}
+    }
+
+    /* ── Accessibility: respect prefers-reduced-motion ── */
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;}
+      .fade-in-up{opacity:1!important;transform:none!important;filter:none!important;}
+      .fade-in-up.visible{opacity:1;transform:none;filter:none;}
+      #particleCanvas,body::after{display:none;}
+      .hero-eyebrow,.hero-title,.hero-tagline,.hero-stats,.hero-btns,.hero-right{animation:none!important;opacity:1!important;transform:none!important;filter:none!important;}
+    }
 
     /* ═══ LIGHT MODE OVERRIDES FOR PREMIUM LAYER ═══ */
     [data-theme="light"] body::after{background:radial-gradient(ellipse 70% 50% at 10% 22%,rgba(5,150,105,0.035) 0%,transparent 55%),radial-gradient(ellipse 55% 60% at 90% 78%,rgba(180,83,9,0.025) 0%,transparent 55%),radial-gradient(ellipse 45% 45% at 55% 48%,rgba(8,145,178,0.02) 0%,transparent 55%);}
@@ -1834,7 +1895,7 @@
     resize();
     window.addEventListener('resize', resize, {passive:true});
 
-    const COUNT = Math.min(Math.floor(W * H / 16000), 72);
+    const COUNT = Math.min(Math.floor(W * H / 24000), 52);
     const pts = Array.from({length: COUNT}, () => ({
       x: Math.random() * W, y: Math.random() * H,
       vx: (Math.random() - 0.5) * 0.32, vy: (Math.random() - 0.5) * 0.32,
@@ -1868,12 +1929,12 @@
         for (let j = i + 1; j < pts.length; j++) {
           const q = pts[j];
           const dist = Math.hypot(p.x - q.x, p.y - q.y);
-          if (dist < 115) {
+          if (dist < 88) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = `rgba(${r},${g},${b},${(1 - dist / 115) * 0.1})`;
-            ctx.lineWidth = 0.6;
+            ctx.strokeStyle = `rgba(${r},${g},${b},${(1 - dist / 88) * 0.1})`;
+            ctx.lineWidth = 0.55;
             ctx.stroke();
           }
         }
@@ -1948,8 +2009,8 @@
         const r = card.getBoundingClientRect();
         const x = e.clientX - r.left, y = e.clientY - r.top;
         const cx = r.width / 2, cy = r.height / 2;
-        const rx = ((y - cy) / cy) * 6;
-        const ry = ((x - cx) / cx) * -6;
+        const rx = ((y - cy) / cy) * 4;
+        const ry = ((x - cx) / cx) * -4;
         card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(4px)`;
         if (glow) {
           glow.style.setProperty('--mx', (x / r.width * 100) + '%');
@@ -1968,8 +2029,8 @@
     document.querySelectorAll('.btn-primary').forEach(btn => {
       btn.addEventListener('mousemove', e => {
         const r = btn.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * 0.25;
-        const y = (e.clientY - r.top  - r.height / 2) * 0.25;
+        const x = (e.clientX - r.left - r.width / 2) * 0.18;
+        const y = (e.clientY - r.top  - r.height / 2) * 0.18;
         btn.style.transform = `translateY(-2px) translate(${x}px,${y}px)`;
       });
       btn.addEventListener('mouseleave', () => {
