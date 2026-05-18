@@ -577,6 +577,49 @@
     :focus-visible{outline:2px solid var(--emerald);outline-offset:3px;}
     .btn-primary:focus-visible,.btn-secondary:focus-visible,.nav-cta:focus-visible,.theme-btn:focus-visible,.form-submit:focus-visible{outline:2px solid var(--emerald);outline-offset:4px;box-shadow:0 0 0 4px rgba(52,211,153,0.15);}
     .contact-link:focus-visible,.social-btn:focus-visible,.project-link:focus-visible{outline:2px solid var(--emerald);outline-offset:3px;}
+
+    /* ── Scroll Progress Bar ── */
+    #scrollProgress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--grad);z-index:2000;transition:width 0.1s linear;border-radius:0 2px 2px 0;box-shadow:0 0 8px rgba(52,211,153,0.6);}
+
+    /* ── Cursor Glow ── */
+    #cursorGlow{position:fixed;pointer-events:none;z-index:9998;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(52,211,153,0.055) 0%,transparent 70%);transform:translate(-50%,-50%);transition:opacity 0.4s ease;opacity:0;will-change:transform;}
+
+    /* ── Hero dot-grid background ── */
+    #home::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(52,211,153,0.12) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 30%,transparent 80%);mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 30%,transparent 80%);pointer-events:none;z-index:0;}
+
+    /* ── Line-accent shimmer ── */
+    @keyframes shimmerSlide{0%{background-position:200% center}100%{background-position:-200% center}}
+    .line-accent{background:linear-gradient(90deg,var(--emerald) 0%,var(--amber) 30%,#06b6d4 60%,var(--emerald) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmerSlide 5s linear infinite;}
+
+    /* ── Enhanced exploring-card animated border ── */
+    .exploring-card{position:relative;overflow:hidden;}
+    .exploring-card::before{content:'';position:absolute;inset:-1px;border-radius:calc(var(--radius) + 1px);background:conic-gradient(from var(--angle,0deg),transparent 70%,rgba(52,211,153,0.5) 80%,rgba(251,191,36,0.4) 90%,transparent 100%);z-index:-1;animation:rotateBorder 4s linear infinite;opacity:0.6;}
+    @property --angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+    @keyframes rotateBorder{to{--angle:360deg;}}
+
+    /* ── 3D card tilt ── */
+    .project-card{transform-style:preserve-3d;will-change:transform;}
+    .project-card .card-inner-glow{position:absolute;inset:0;border-radius:var(--radius);background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(52,211,153,0.07) 0%,transparent 65%);pointer-events:none;z-index:1;transition:opacity 0.3s ease;opacity:0;}
+    .project-card:hover .card-inner-glow{opacity:1;}
+
+    /* ── Stagger fade-in for grid children ── */
+    .skills-grid .skill-category,.projects-grid .project-card{opacity:0;transform:translateY(28px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .skills-grid .skill-category.in-view,.projects-grid .project-card.in-view{opacity:1;transform:translateY(0);}
+
+    /* ── Timeline dot glow ── */
+    .tl-dot{transition:box-shadow 0.3s ease,transform 0.3s ease;}
+    .tl-item:hover .tl-dot{box-shadow:0 0 0 6px rgba(52,211,153,0.15),0 0 18px rgba(52,211,153,0.35);transform:scale(1.25);}
+
+    /* ── Section heading underline draw ── */
+    .section-heading::after{content:'';display:block;margin:0.5rem auto 0;height:2px;background:var(--grad);border-radius:2px;width:0;transition:width 0.6s cubic-bezier(0.4,0,0.2,1);}
+    .section-heading.in-view::after{width:3.5rem;}
+
+    /* ── Nav active link glow ── */
+    .nav-link.active{color:var(--emerald)!important;}
+
+    /* ── Blob enhancement ── */
+    .blob{animation:blobFloat 9s ease-in-out infinite alternate,blobPulse 6s ease-in-out infinite alternate;}
+    @keyframes blobPulse{0%{opacity:0.07}50%{opacity:0.13}100%{opacity:0.07}}
   </style>
   <!-- Respect OS dark/light preference on first load -->
   <script>
@@ -592,6 +635,8 @@
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
 <div class="blob blob-3"></div>
+<div id="scrollProgress"></div>
+<div id="cursorGlow"></div>
 
 <!-- Nav -->
 <nav id="navbar">
@@ -853,10 +898,12 @@
             <span class="exploring-title">Currently Exploring</span>
           </div>
           <div class="exploring-tags">
-            <span class="exp-tag">RAG Pipelines</span>
+            <span class="exp-tag">PyTorch</span>
+            <span class="exp-tag">Deep Learning</span>
+            <span class="exp-tag">Transformers</span>
             <span class="exp-tag">LangChain</span>
-            <span class="exp-tag">Fine-tuning LLMs</span>
-            <span class="exp-tag">AI Agents</span>
+            <span class="exp-tag">RAG Pipelines</span>
+            <span class="exp-tag">MLflow</span>
           </div>
         </div>
       </div>
@@ -966,6 +1013,7 @@
 
         <!-- Finzy -->
         <div class="project-card fade-in-up">
+          <div class="card-inner-glow"></div>
           <div class="project-visual" style="background:linear-gradient(135deg,#060a18,#0d1a30);">
             <svg class="proj-art" viewBox="0 0 320 175" xmlns="http://www.w3.org/2000/svg">
               <defs><radialGradient id="proj-g1" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#fbbf24" stop-opacity="0.25"/><stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/></radialGradient></defs>
@@ -993,6 +1041,7 @@
 
         <!-- Movie Recommendation System -->
         <div class="project-card fade-in-up">
+          <div class="card-inner-glow"></div>
           <div class="project-visual" style="background:linear-gradient(135deg,#0a0818,#140d28);">
             <svg class="proj-art" viewBox="0 0 320 175" xmlns="http://www.w3.org/2000/svg">
               <defs><radialGradient id="proj-g2" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#a78bfa" stop-opacity="0.28"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></radialGradient></defs>
@@ -1032,6 +1081,7 @@
 
         <!-- Heart Failure Prediction -->
         <div class="project-card fade-in-up">
+          <div class="card-inner-glow"></div>
           <div class="project-visual" style="background:linear-gradient(135deg,#180810,#280d18);">
             <svg class="proj-art" viewBox="0 0 320 175" xmlns="http://www.w3.org/2000/svg">
               <defs><radialGradient id="proj-g4" cx="50%" cy="40%" r="55%"><stop offset="0%" stop-color="#fb7185" stop-opacity="0.22"/><stop offset="100%" stop-color="#fb7185" stop-opacity="0"/></radialGradient></defs>
@@ -1067,6 +1117,7 @@
 
         <!-- Student Performance Prediction -->
         <div class="project-card fade-in-up">
+          <div class="card-inner-glow"></div>
           <div class="project-visual" style="background:linear-gradient(135deg,#060e10,#0a1820);">
             <svg class="proj-art" viewBox="0 0 320 175" xmlns="http://www.w3.org/2000/svg">
               <defs><radialGradient id="proj-g6" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#34d399" stop-opacity="0.18"/><stop offset="100%" stop-color="#34d399" stop-opacity="0"/></radialGradient></defs>
@@ -1637,6 +1688,111 @@
     const rightBadge = document.querySelector('.badge-right');
     if (leftBadge)  cycleBadge(leftBadge,  leftItems,  2200);
     if (rightBadge) cycleBadge(rightBadge, rightItems, 4000);
+  })();
+
+  /* ── Scroll Progress Bar ── */
+  (function(){
+    const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    function update(){
+      const h = document.documentElement;
+      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      bar.style.width = Math.min(pct, 100) + '%';
+    }
+    window.addEventListener('scroll', update, {passive:true});
+  })();
+
+  /* ── Cursor Ambient Glow ── */
+  (function(){
+    const glow = document.getElementById('cursorGlow');
+    if (!glow || window.matchMedia('(hover:none)').matches) return;
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+    let cx = mx, cy = my;
+    let raf;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; glow.style.opacity = '1'; }, {passive:true});
+    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+    function lerp(a, b, t){ return a + (b - a) * t; }
+    function loop(){
+      cx = lerp(cx, mx, 0.072);
+      cy = lerp(cy, my, 0.072);
+      glow.style.left = cx + 'px';
+      glow.style.top  = cy + 'px';
+      raf = requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+
+  /* ── 3D Card Tilt + inner glow ── */
+  (function(){
+    if (window.matchMedia('(hover:none)').matches) return;
+    document.querySelectorAll('.project-card').forEach(card => {
+      const glow = card.querySelector('.card-inner-glow');
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        const cx = r.width / 2, cy = r.height / 2;
+        const rx = ((y - cy) / cy) * 6;
+        const ry = ((x - cx) / cx) * -6;
+        card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(4px)`;
+        if (glow) {
+          glow.style.setProperty('--mx', (x / r.width * 100) + '%');
+          glow.style.setProperty('--my', (y / r.height * 100) + '%');
+        }
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+      });
+    });
+  })();
+
+  /* ── Magnetic Primary Button ── */
+  (function(){
+    if (window.matchMedia('(hover:none)').matches) return;
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * 0.25;
+        const y = (e.clientY - r.top  - r.height / 2) * 0.25;
+        btn.style.transform = `translateY(-2px) translate(${x}px,${y}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  })();
+
+  /* ── Stagger children in view ── */
+  (function(){
+    const targets = document.querySelectorAll('.skills-grid .skill-category, .projects-grid .project-card');
+    targets.forEach((el, i) => { el.style.transitionDelay = (i % 6) * 80 + 'ms'; });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    }, {threshold: 0.1});
+    targets.forEach(el => io.observe(el));
+  })();
+
+  /* ── Section heading underline draw ── */
+  (function(){
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    }, {threshold: 0.4});
+    document.querySelectorAll('.section-heading').forEach(h => io.observe(h));
+  })();
+
+  /* ── Nav active link highlight ── */
+  (function(){
+    const links = document.querySelectorAll('.nav-link');
+    const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, {threshold: 0.35});
+    sections.forEach(s => io.observe(s));
   })();
 </script>
 </body>
