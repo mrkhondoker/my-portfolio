@@ -109,7 +109,7 @@
     [data-theme="light"] .badge-lbl,[data-theme="light"] .badge-sub{color:#6b7280;}
     .nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center;}
     .nav-links a{font-size:0.86rem;font-weight:500;color:var(--text-muted);letter-spacing:0.02em;transition:var(--t);position:relative;}
-    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:100%;height:1.5px;background:var(--grad);transition:right 0.3s ease;}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:100%;height:1.5px;background:var(--grad);transition:right 0.3s cubic-bezier(0.4,0,0.2,1);}
     .nav-links a:hover{color:var(--text);}
     .nav-links a:hover::after,.nav-links a.active::after{right:0;}
     .nav-links a.active{color:var(--emerald);}
@@ -210,7 +210,7 @@
     .about-role{color:var(--emerald);font-size:0.83rem;font-weight:700;letter-spacing:0.01em;}
     .about-info-list{display:flex;flex-direction:column;gap:0.38rem;}
     .about-info-row{display:flex;align-items:center;gap:0.7rem;padding:0.52rem 0.65rem;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid transparent;font-size:0.79rem;color:var(--text-muted);transition:var(--t);cursor:default;}
-    .about-info-row:hover{background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.16);color:var(--text);transform:translateX(3px);}
+    .about-info-row:hover{background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.16);color:var(--text);transform:translateX(4px);}
     .info-icon-wrap{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:filter 0.25s;}
     .about-info-row:hover .info-icon-wrap{filter:brightness(1.2);}
     .info-icon{width:14px;height:14px;flex-shrink:0;}
@@ -589,7 +589,7 @@
 
     /* ── Line-accent shimmer ── */
     @keyframes shimmerSlide{0%{background-position:200% center}100%{background-position:-200% center}}
-    .line-accent{background:linear-gradient(90deg,var(--emerald) 0%,var(--amber) 30%,#06b6d4 60%,var(--emerald) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmerSlide 5s linear infinite;}
+    .line-accent{background:linear-gradient(90deg,var(--emerald) 0%,var(--amber) 30%,#06b6d4 60%,var(--emerald) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmerSlide 7s linear infinite;}
 
     /* ── Enhanced exploring-card animated border ── */
     .exploring-card{position:relative;overflow:hidden;}
@@ -610,9 +610,9 @@
     .timeline-dot{transition:box-shadow 0.3s ease,transform 0.3s ease;}
     .timeline-item:hover .timeline-dot{box-shadow:0 0 0 6px rgba(52,211,153,0.15),0 0 18px rgba(52,211,153,0.35);transform:scale(1.25);}
 
-    /* ── Section heading underline draw ── */
-    .section-heading::after{content:'';display:block;margin:0.5rem auto 0;height:2px;background:var(--grad);border-radius:2px;width:0;transition:width 0.6s cubic-bezier(0.4,0,0.2,1);}
-    .section-heading.in-view::after{width:3.5rem;}
+    /* ── Section title underline draw (was .section-heading — fixed to match HTML) ── */
+    .section-title::after{content:'';display:block;margin:0.5rem auto 0;height:2px;background:var(--grad);border-radius:2px;width:0;transition:width 0.65s cubic-bezier(0.4,0,0.2,1);}
+    .section-title.in-view::after{width:3.5rem;}
 
     /* ── Nav active link glow ── */
     .nav-link.active{color:var(--emerald)!important;}
@@ -630,7 +630,7 @@
     [data-theme="light"] .timeline-item:hover .timeline-dot{box-shadow:0 0 0 6px rgba(13,110,85,0.12),0 0 18px rgba(13,110,85,0.22);transform:scale(1.25);}
     [data-theme="light"] .blob{animation:blobFloat 9s ease-in-out infinite alternate,blobPulseLight 6s ease-in-out infinite alternate;}
     @keyframes blobPulseLight{0%{opacity:0.03}50%{opacity:0.07}100%{opacity:0.03}}
-    [data-theme="light"] .section-heading::after{background:linear-gradient(135deg,#059669 0%,#0284c7 100%);}
+    [data-theme="light"] .section-title::after{background:linear-gradient(135deg,#059669 0%,#0284c7 100%);}
     [data-theme="light"] .project-card:hover{box-shadow:0 28px 56px rgba(0,0,0,0.12),0 0 0 1px rgba(13,110,85,0.12),0 0 40px rgba(13,110,85,0.06);}
     [data-theme="light"] .skill-category:hover{box-shadow:0 20px 40px rgba(0,0,0,0.08),0 0 30px rgba(13,110,85,0.06);}
     [data-theme="light"] .line-accent{background:linear-gradient(90deg,#059669 0%,#b45309 30%,#0891b2 60%,#059669 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;}
@@ -669,8 +669,8 @@
     .project-card:hover .project-outcome{background:rgba(52,211,153,0.1);}
 
     /* ── Enhanced button glow ── */
-    .btn-primary{box-shadow:0 4px 24px rgba(52,211,153,0.18),0 0 0 0.5px rgba(52,211,153,0.1);}
-    .btn-primary:hover{box-shadow:0 14px 44px rgba(52,211,153,0.52),0 0 60px rgba(52,211,153,0.12),0 0 0 1px rgba(52,211,153,0.22);}
+    .btn-primary{box-shadow:0 4px 20px rgba(52,211,153,0.14),0 0 0 0.5px rgba(52,211,153,0.08);}
+    .btn-primary:hover{box-shadow:0 12px 36px rgba(52,211,153,0.42),0 0 40px rgba(52,211,153,0.08),0 0 0 1px rgba(52,211,153,0.2);}
 
     /* ── line-accent text glow ── */
     .line-accent{filter:drop-shadow(0 0 18px rgba(52,211,153,0.2));}
@@ -808,11 +808,19 @@
     [data-theme="light"] .contact-link:hover{box-shadow:0 8px 28px rgba(13,110,85,0.1);}
     [data-theme="light"] .project-card:hover .project-outcome{background:rgba(13,110,85,0.08);}
 
-    /* ═══ MOTION + MOBILE QUALITY PASS ═══ */
+    /* ═══ FINAL PROFESSIONAL REFINEMENT PASS ═══ */
     /* Noise: reduce film grain, sparser dot grid, softer text glow */
     body::before{opacity:0.35;}
     .line-accent{filter:drop-shadow(0 0 10px rgba(52,211,153,0.12));}
     #home::before{background-size:40px 40px;}
+    /* Fix: avail-pill dot was invisible (only .hero-eyebrow .dot had styling) */
+    .avail-pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;animation:pulse 2s infinite;}
+    /* Nav Resume quick-access button */
+    .nav-resume-btn{font-size:0.8rem;font-weight:700;font-family:'Outfit',sans-serif;color:var(--text-muted);border:1px solid var(--card-border);padding:0.34rem 0.82rem;border-radius:50px;transition:var(--t);display:inline-flex;align-items:center;gap:0.3rem;letter-spacing:0.01em;}
+    .nav-resume-btn svg{width:13px;height:13px;flex-shrink:0;}
+    .nav-resume-btn:hover{color:var(--amber);border-color:rgba(251,191,36,0.45);background:rgba(251,191,36,0.06);transform:translateY(-1px);}
+    [data-theme="light"] .nav-resume-btn:hover{color:var(--amber);border-color:rgba(180,83,9,0.38);background:rgba(180,83,9,0.05);}
+    @media(max-width:900px){.nav-resume-btn{display:none;}}
     /* Project role label */
     .project-role{font-size:0.7rem;font-weight:700;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.42rem;}
     @media(max-width:600px){.project-role{font-size:0.65rem;}}
@@ -867,6 +875,10 @@
   </ul>
   <div class="nav-right">
     <button class="theme-btn" id="themeToggle" aria-label="Switch to light mode">Light</button>
+    <a href="resume.pdf" download="Resume-Sameeul-Khondoker-Jisan.pdf" class="nav-resume-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Resume
+    </a>
     <a href="#contact" class="nav-cta">Hire Me</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
@@ -1221,7 +1233,7 @@
 <section id="projects">
   <div class="section-wrap">
     <div class="section-inner">
-      <div class="section-eyebrow">Portfolio</div>
+      <div class="section-eyebrow">Selected Work</div>
       <h2 class="section-title">Featured <span class="line-accent">Projects</span></h2>
       <p class="section-sub">From AI-powered finance apps to deployed ML pipelines — projects spanning data science, predictive modeling, and intelligent application development.</p>
       <div class="projects-grid">
@@ -1473,7 +1485,7 @@
 <section id="experience">
   <div class="section-wrap">
     <div class="section-inner">
-      <div class="section-eyebrow">Journey</div>
+      <div class="section-eyebrow">Career Path</div>
       <h2 class="section-title">Experience &<br><span class="line-accent">Learning Path</span></h2>
       <div class="experience-grid">
         <div class="fade-in-up">
@@ -1774,10 +1786,6 @@
     }, { threshold: 0.4 }).observe(s);
   });
 
-  /* Nav shadow on scroll */
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.5)' : '';
-  });
 
   /* Role typewriter — spring fade with vertical shift */
   (function(){
@@ -2060,7 +2068,7 @@
         if (d < 180) { p.x += dx * 0.006; p.y += dy * 0.006; }
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r},${g},${b},0.38)`;
+        ctx.fillStyle = `rgba(${r},${g},${b},0.28)`;
         ctx.fill();
         for (let j = i + 1; j < pts.length; j++) {
           const q = pts[j];
@@ -2199,24 +2207,9 @@
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
     }, {threshold: 0.4});
-    document.querySelectorAll('.section-heading').forEach(h => io.observe(h));
+    document.querySelectorAll('.section-title').forEach(h => io.observe(h));
   })();
 
-  /* ── Nav active link highlight ── */
-  (function(){
-    const links = document.querySelectorAll('.nav-link');
-    const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, {threshold: 0.35});
-    sections.forEach(s => io.observe(s));
-  })();
 </script>
 </body>
 </html>
