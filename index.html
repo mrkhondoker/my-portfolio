@@ -547,16 +547,20 @@
 
     /* ── Currently Exploring ── */
     .exploring-wrap{margin-top:3rem;}
-    .exploring-card{background:linear-gradient(135deg,rgba(52,211,153,0.05),rgba(251,191,36,0.03));border:1px solid rgba(52,211,153,0.18);border-radius:var(--radius);padding:1.25rem 1.75rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;transition:var(--t);}
-    .exploring-card:hover{border-color:rgba(52,211,153,0.35);box-shadow:0 8px 32px rgba(52,211,153,0.08);}
-    .exploring-header{display:flex;align-items:center;gap:0.65rem;flex-shrink:0;}
+    .exploring-card{background:linear-gradient(135deg,rgba(52,211,153,0.05) 0%,rgba(251,191,36,0.02) 100%);border:1px solid rgba(52,211,153,0.18);border-radius:var(--radius);padding:1.5rem 1.75rem;transition:var(--t);}
+    .exploring-card:hover{border-color:rgba(52,211,153,0.32);box-shadow:0 8px 32px rgba(52,211,153,0.08);}
+    .exploring-header{display:flex;align-items:center;gap:0.65rem;margin-bottom:1.35rem;}
     .exploring-dot{width:8px;height:8px;border-radius:50%;background:var(--emerald);animation:pulse 2s infinite;flex-shrink:0;}
-    .exploring-title{font-family:'Outfit',sans-serif;font-weight:900;font-size:0.88rem;color:var(--emerald);white-space:nowrap;letter-spacing:0.02em;}
-    .exploring-tags{display:flex;flex-wrap:wrap;gap:0.45rem;}
-    .exp-tag{background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);color:var(--emerald);font-size:0.75rem;font-weight:700;padding:0.28rem 0.8rem;border-radius:50px;letter-spacing:0.02em;transition:var(--t);}
-    .exp-tag:hover{background:rgba(52,211,153,0.18);transform:translateY(-2px);}
-    @media(max-width:600px){
-      .exploring-card{flex-direction:column;align-items:flex-start;gap:0.85rem;padding:1rem 1.25rem;}
+    .exploring-title{font-family:'Outfit',sans-serif;font-weight:900;font-size:0.88rem;color:var(--emerald);letter-spacing:0.02em;}
+    .exploring-meta{margin-left:auto;font-size:0.67rem;color:var(--text-dim);background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.14);border-radius:50px;padding:0.14rem 0.6rem;white-space:nowrap;font-weight:600;letter-spacing:0.03em;}
+    .exploring-tracks{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+    .track-label{font-size:0.67rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.7rem;padding-bottom:0.5rem;border-bottom:1px solid var(--card-border);}
+    .exploring-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+    .exp-tag{background:rgba(52,211,153,0.07);border:1px solid rgba(52,211,153,0.18);color:var(--emerald);font-size:0.72rem;font-weight:600;padding:0.24rem 0.68rem;border-radius:6px;letter-spacing:0.01em;transition:var(--t);}
+    .exp-tag:hover{background:rgba(52,211,153,0.14);border-color:rgba(52,211,153,0.42);transform:translateY(-1px);}
+    @media(max-width:620px){
+      .exploring-card{padding:1.1rem 1.25rem;}
+      .exploring-tracks{grid-template-columns:1fr;gap:1.25rem;}
     }
 
     /* ── Enhanced hover glows ── */
@@ -815,6 +819,16 @@
     [data-theme="light"] .cert-card:hover{box-shadow:0 8px 24px rgba(13,110,85,0.08);}
     [data-theme="light"] .contact-link:hover{box-shadow:0 8px 28px rgba(13,110,85,0.1);}
     [data-theme="light"] .project-card:hover .project-outcome{background:rgba(13,110,85,0.08);}
+    [data-theme="light"] .project-badge{background:rgba(255,255,255,0.92);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+    [data-theme="light"] .skill-tag{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.1);color:var(--text-muted);}
+    [data-theme="light"] .skill-tag:hover{background:rgba(13,110,85,0.08);border-color:rgba(13,110,85,0.35);color:var(--emerald);}
+    [data-theme="light"] .skill-tag.hot{background:rgba(180,83,9,0.06);border-color:rgba(180,83,9,0.22);color:var(--amber);}
+    [data-theme="light"] .skill-tag.soft{background:rgba(225,29,72,0.05);border-color:rgba(225,29,72,0.2);color:var(--rose);}
+    [data-theme="light"] .skill-tag.learning{background:rgba(100,116,139,0.05);border-color:rgba(100,116,139,0.18);color:var(--text-dim);}
+    [data-theme="light"] .exp-tag{background:rgba(13,110,85,0.06);border-color:rgba(13,110,85,0.2);}
+    [data-theme="light"] .exp-tag:hover{background:rgba(13,110,85,0.12);border-color:rgba(13,110,85,0.38);}
+    [data-theme="light"] .project-tag{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.1);color:var(--text-muted);}
+    [data-theme="light"] .track-label{border-bottom-color:rgba(0,0,0,0.1);}
 
     /* ═══ FINAL PROFESSIONAL REFINEMENT PASS ═══ */
     /* Noise: reduce film grain, sparser dot grid, softer text glow */
@@ -1077,9 +1091,8 @@
           <div class="skill-cat-title">Programming Languages</div>
           <div class="skill-tags">
             <span class="skill-tag hot">Python</span><span class="skill-tag hot">SQL</span>
-            <span class="skill-tag">R</span><span class="skill-tag">Java</span>
-            <span class="skill-tag">Bash / Shell</span>
-            <span class="skill-tag learning">C/C++</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag learning">Java</span>
           </div>
         </div>
         <div class="skill-category fade-in-up">
@@ -1113,8 +1126,8 @@
             <span class="skill-tag hot">Statistical Analysis</span><span class="skill-tag hot">Feature Engineering</span>
             <span class="skill-tag hot">EDA</span><span class="skill-tag hot">Data Cleaning</span>
             <span class="skill-tag hot">Data Preprocessing</span><span class="skill-tag hot">Business Intelligence</span>
-            <span class="skill-tag hot">Hypothesis Testing</span><span class="skill-tag hot">A/B Testing</span>
-            <span class="skill-tag">Time Series Analysis</span><span class="skill-tag">Cohort Analysis</span>
+            <span class="skill-tag">Hypothesis Testing</span>
+            <span class="skill-tag learning">A/B Testing</span><span class="skill-tag learning">Time Series Analysis</span><span class="skill-tag learning">Cohort Analysis</span>
             <span class="skill-tag">KPI Reporting</span><span class="skill-tag">Dashboard Development</span>
           </div>
         </div>
@@ -1124,8 +1137,8 @@
           <div class="skill-tags">
             <span class="skill-tag hot">Matplotlib</span><span class="skill-tag hot">Seaborn</span>
             <span class="skill-tag hot">Excel</span><span class="skill-tag hot">Power BI</span>
-            <span class="skill-tag hot">Tableau</span><span class="skill-tag hot">Plotly</span>
-            <span class="skill-tag">Looker Studio</span><span class="skill-tag">Streamlit</span>
+            <span class="skill-tag hot">Tableau</span><span class="skill-tag">Plotly</span>
+            <span class="skill-tag learning">Looker Studio</span><span class="skill-tag learning">Streamlit</span>
           </div>
         </div>
         <div class="skill-category fade-in-up">
@@ -1134,9 +1147,9 @@
           <div class="skill-tags">
             <span class="skill-tag hot">MySQL</span><span class="skill-tag hot">PostgreSQL</span>
             <span class="skill-tag hot">RESTful APIs</span><span class="skill-tag hot">Flask</span>
-            <span class="skill-tag">FastAPI</span><span class="skill-tag">MongoDB</span>
-            <span class="skill-tag">ChromaDB</span><span class="skill-tag">Vector Databases</span>
-            <span class="skill-tag learning">Supabase</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag learning">FastAPI</span><span class="skill-tag learning">MongoDB</span>
+            <span class="skill-tag learning">Supabase</span><span class="skill-tag learning">ChromaDB</span>
           </div>
         </div>
         <div class="skill-category fade-in-up">
@@ -1145,9 +1158,8 @@
           <div class="skill-tags">
             <span class="skill-tag hot">Git / GitHub</span><span class="skill-tag hot">Jupyter Notebook</span>
             <span class="skill-tag hot">Google Colab</span><span class="skill-tag hot">VS Code</span>
-            <span class="skill-tag hot">MLflow</span><span class="skill-tag">Postman</span>
-            <span class="skill-tag">Docker</span><span class="skill-tag">Google Cloud</span>
-            <span class="skill-tag">DVC</span><span class="skill-tag">Weights & Biases</span>
+            <span class="skill-tag">Postman</span><span class="skill-tag">Google Cloud</span>
+            <span class="skill-tag learning">MLflow</span><span class="skill-tag learning">DVC</span>
             <span class="skill-tag learning">Hugging Face Hub</span>
           </div>
         </div>
@@ -1155,11 +1167,10 @@
           <div class="skill-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 100 16A8 8 0 0012 2z"/><path d="M12 6v6l4 2"/><path d="M2 12h2M20 12h2M12 2v2M12 20v2"/></svg></div>
           <div class="skill-cat-title">AI / LLM Engineering</div>
           <div class="skill-tags">
-            <span class="skill-tag hot">LangChain</span><span class="skill-tag hot">RAG Pipelines</span>
-            <span class="skill-tag hot">Prompt Engineering</span><span class="skill-tag hot">Embeddings</span>
-            <span class="skill-tag">Hugging Face Transformers</span><span class="skill-tag">OpenAI API</span>
-            <span class="skill-tag">Function Calling</span><span class="skill-tag">LLM Orchestration</span>
-            <span class="skill-tag learning">LLM Fine-tuning</span><span class="skill-tag learning">AI Agents</span>
+            <span class="skill-tag">Prompt Engineering</span><span class="skill-tag">Gemini / OpenAI API</span>
+            <span class="skill-tag learning">LangChain</span><span class="skill-tag learning">RAG Pipelines</span>
+            <span class="skill-tag learning">Embeddings</span><span class="skill-tag learning">Hugging Face Transformers</span>
+            <span class="skill-tag learning">LLM Fine-tuning</span><span class="skill-tag learning">Agentic AI</span>
           </div>
         </div>
         <div class="skill-category fade-in-up">
@@ -1172,15 +1183,6 @@
             <span class="skill-tag soft">Creativity</span>
           </div>
         </div>
-        <div class="skill-category fade-in-up">
-          <div class="skill-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-          <div class="skill-cat-title">Design & Media</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Video Editing</span><span class="skill-tag">Content Creation</span>
-            <span class="skill-tag learning">Canva</span>
-            <span class="skill-tag learning">MS PowerPoint</span>
-          </div>
-        </div>
       </div>
 
       <!-- Currently Exploring -->
@@ -1189,18 +1191,32 @@
           <div class="exploring-header">
             <div class="exploring-dot"></div>
             <span class="exploring-title">Currently Exploring</span>
+            <span class="exploring-meta">Active · 2025</span>
           </div>
-          <div class="exploring-tags">
-            <span class="exp-tag">LLM Fine-tuning</span>
-            <span class="exp-tag">Agentic AI</span>
-            <span class="exp-tag">LangGraph</span>
-            <span class="exp-tag">Hugging Face</span>
-            <span class="exp-tag">Vector Databases</span>
-            <span class="exp-tag">MLflow</span>
-            <span class="exp-tag">Apache Airflow</span>
-            <span class="exp-tag">dbt</span>
-            <span class="exp-tag">Streamlit</span>
-            <span class="exp-tag">FastAPI</span>
+          <div class="exploring-tracks">
+            <div class="explore-track">
+              <div class="track-label">AI &amp; LLM Engineering</div>
+              <div class="exploring-tags">
+                <span class="exp-tag">Deep Learning</span>
+                <span class="exp-tag">LangChain</span>
+                <span class="exp-tag">RAG Pipelines</span>
+                <span class="exp-tag">LLM Fine-tuning</span>
+                <span class="exp-tag">Agentic AI</span>
+                <span class="exp-tag">LangGraph</span>
+                <span class="exp-tag">Hugging Face</span>
+              </div>
+            </div>
+            <div class="explore-track">
+              <div class="track-label">Data Engineering &amp; MLOps</div>
+              <div class="exploring-tags">
+                <span class="exp-tag">Apache Airflow</span>
+                <span class="exp-tag">dbt Core</span>
+                <span class="exp-tag">MLflow</span>
+                <span class="exp-tag">PySpark</span>
+                <span class="exp-tag">FastAPI</span>
+                <span class="exp-tag">Docker Compose</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
