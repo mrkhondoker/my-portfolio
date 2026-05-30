@@ -405,7 +405,9 @@
     .awards-grid:hover .award-chip{border-color:var(--emerald);color:var(--emerald);box-shadow:0 8px 20px rgba(52,211,153,0.15);}
 
     /* ── Experience alignment ── */
-    .experience-grid{align-items:start;}
+    .experience-grid{align-items:stretch;}
+    .experience-grid > div:first-child{display:flex;flex-direction:column;}
+    .experience-grid > div:first-child .timeline{flex:1;justify-content:space-between;}
     .exp-right{display:flex;flex-direction:column;gap:1.5rem;}
     .exp-subsection{display:flex;flex-direction:column;gap:0.6rem;}
 
@@ -812,8 +814,8 @@
     [data-theme="light"] footer::before{background:linear-gradient(to right,transparent,rgba(13,110,85,0.2),transparent);}
     [data-theme="light"] .skill-cat-icon{box-shadow:0 0 18px rgba(13,110,85,0.05);}
     [data-theme="light"] .skill-category:hover .skill-cat-icon{box-shadow:0 0 32px rgba(13,110,85,0.14);}
-    [data-theme="light"] .project-visual::after{background:linear-gradient(to top,rgba(255,255,255,0.92),transparent);}
-    [data-theme="light"] .project-card::after{background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,0.3) 50%,transparent 70%);}
+    [data-theme="light"] .project-visual::after{display:none;}
+    [data-theme="light"] .project-card::after{display:none;}
     [data-theme="light"] #particleCanvas{opacity:0.38;}
     [data-theme="light"] .social-btn:hover{box-shadow:0 0 22px rgba(13,110,85,0.18);}
     [data-theme="light"] .edu-card:hover{box-shadow:0 8px 32px rgba(13,110,85,0.07);}
@@ -1056,7 +1058,7 @@
               </div>
               <div class="about-info-row">
                 <div class="info-icon-wrap info-iw-am"><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
-                <span>IBM Certified Data Analyst</span>
+                <span>IBM Certified — Data Analyst &amp; Data Scientist</span>
               </div>
               <div class="about-info-row">
                 <div class="info-icon-wrap info-iw-em"><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
@@ -1694,6 +1696,7 @@
               <div class="award-chip">DIU Job Utsob 2024 & 2025 Volunteer</div>
               <div class="award-chip">DIU CSE Fest 2025 Project Show</div>
               <div class="award-chip">CDC-DIU Campus Ambassador</div>
+              <div class="award-chip">DIU SEC Code Trap Organizer</div>
             </div>
           </div>
         </div>
@@ -1760,7 +1763,7 @@
             <form id="contactForm" novalidate>
               <div class="form-row">
                 <label class="form-label" for="cf-name">Your Name</label>
-                <input id="cf-name" name="name" type="text" class="form-input" placeholder="Alex Johnson" autocomplete="name" required />
+                <input id="cf-name" name="name" type="text" class="form-input" placeholder="Your full name" autocomplete="name" required />
               </div>
               <div class="form-row">
                 <label class="form-label" for="cf-email">Email Address</label>
