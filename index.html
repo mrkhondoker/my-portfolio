@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sameeul Khondoker Jisan — Data Scientist & AI Engineer</title>
-  <meta name="description" content="Portfolio of Sameeul Khondoker Jisan — IBM-Certified Data Scientist and aspiring AI Engineer & Researcher based in Dhaka, Bangladesh." />
+  <title>Sameeul Khondoker Jisan — Data Analyst | Data Scientist & AI Engineer</title>
+  <meta name="description" content="Portfolio of Sameeul Khondoker Jisan — IBM-Certified Data Analyst & Data Scientist learning AI engineering, based in Dhaka, Bangladesh. Open to data analyst, data science, and research roles." />
   <link rel="canonical" href="https://mrkhondoker.github.io/my-portfolio/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mrkhondoker.github.io/my-portfolio/" />
-  <meta property="og:title" content="Sameeul Khondoker Jisan — Data Scientist & AI Researcher" />
-  <meta property="og:description" content="Portfolio of Sameeul Khondoker Jisan — IBM-Certified Data Scientist, active researcher with 2 in-progress publications, aspiring AI Engineer & Researcher based in Dhaka, Bangladesh." />
+  <meta property="og:title" content="Sameeul Khondoker Jisan — Data Analyst & AI Engineer" />
+  <meta property="og:description" content="Portfolio of Sameeul Khondoker Jisan — IBM-Certified Data Analyst & Data Scientist, 2 in-progress ML publications, future goal: AI Engineer & Researcher. Based in Dhaka, Bangladesh." />
   <meta property="og:image" content="jisan_portfolio.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@Mr_Khondokar502" />
-  <meta name="twitter:title" content="Sameeul Khondoker Jisan — Data Scientist & AI Researcher" />
-  <meta name="twitter:description" content="Portfolio of Sameeul Khondoker Jisan — IBM-Certified Data Scientist, active researcher with 2 in-progress publications, aspiring AI Engineer & Researcher based in Dhaka, Bangladesh." />
+  <meta name="twitter:title" content="Sameeul Khondoker Jisan — Data Analyst & AI Engineer" />
+  <meta name="twitter:description" content="Portfolio of Sameeul Khondoker Jisan — IBM-Certified Data Analyst & Data Scientist, future goal: AI Engineer. 2 in-progress ML publications. Based in Dhaka, Bangladesh." />
   <meta name="twitter:image" content="jisan_portfolio.png" />
 
   <!-- JSON-LD Structured Data -->
@@ -27,8 +27,8 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Sameeul Khondoker Jisan",
-    "jobTitle": "Data Scientist & AI Researcher",
-    "description": "IBM-Certified Data Scientist, active researcher with 2 in-progress ML publications, aspiring AI Engineer & Researcher.",
+    "jobTitle": "Data Analyst & Data Scientist",
+    "description": "IBM-Certified Data Analyst & Data Scientist, learning AI engineering, 2 in-progress ML publications, future goal: AI Engineer.",
     "url": "https://mrkhondoker.github.io/my-portfolio/",
     "email": "mrkhondokar.prof@gmail.com",
     "telephone": "+8801767766680",
@@ -346,7 +346,7 @@
     .contact-header .section-eyebrow::after{display:none;}
     .contact-title{font-size:clamp(1.75rem,3vw,2.4rem);font-weight:900;margin-bottom:0.9rem;}
     .contact-desc{color:var(--text-muted);max-width:560px;margin:0 auto;}
-    .contact-body{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+    .contact-body{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:stretch;}
     .contact-links{display:flex;flex-direction:column;gap:0.75rem;}
     .contact-link{display:flex;align-items:center;gap:0.95rem;background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:0.9rem 1.1rem;backdrop-filter:blur(20px);transition:var(--t);}
     .contact-link:hover{border-color:var(--emerald);transform:translateX(4px);}
@@ -354,12 +354,13 @@
     .contact-link-icon svg{width:20px;height:20px;}
     .contact-link-title{font-weight:700;font-size:0.86rem;}
     .contact-link-val{font-size:0.78rem;color:var(--text-muted);}
-    .contact-form{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.9rem;backdrop-filter:blur(20px);}
+    .contact-form{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.9rem;backdrop-filter:blur(20px);display:flex;flex-direction:column;height:100%;}
+    .contact-form form{display:flex;flex-direction:column;flex:1;}
     .form-row{margin-bottom:1.15rem;}
     .form-label{display:block;font-size:0.76rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.45rem;}
     .form-input,.form-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--card-border);border-radius:10px;padding:0.75rem 0.95rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.88rem;transition:var(--t);outline:none;}
     .form-input:focus,.form-textarea:focus{border-color:var(--emerald);background:rgba(52,211,153,0.04);}
-    .form-textarea{resize:vertical;min-height:115px;}
+    .form-textarea{resize:vertical;min-height:115px;flex:1;}
     .form-submit{width:100%;background:var(--grad);border:none;cursor:pointer;color:#030d08;padding:0.88rem;border-radius:50px;font-weight:800;font-size:0.88rem;font-family:'Outfit',sans-serif;transition:var(--t);letter-spacing:0.03em;}
     .form-submit:hover{opacity:0.85;transform:translateY(-2px);box-shadow:0 12px 30px rgba(52,211,153,0.32);}
     .form-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
@@ -436,25 +437,26 @@
       .section-sub{margin-bottom:1.75rem;font-size:0.9rem;}
 
       /* ── Hero ── */
-      #home{padding-top:88px;padding-bottom:3rem;}
-      .hero-img-wrap{width:100%;height:300px;position:relative;}
+      #home{padding-top:88px;padding-bottom:2rem;}
+      .hero-img-wrap{width:100%;height:370px;position:relative;}
       .hero-img-bg{display:none;}
-      .hero-avatar{width:100%;height:100%;border-radius:18px;}
-      .hero-badge{min-width:0;padding:0.5rem 0.65rem;animation:none;}
-      .badge-right{top:auto;bottom:56px;}
-      .badge-val{font-size:0.81rem;}
+      .hero-avatar{width:100%;height:100%;border-radius:20px;}
+      .hero-badge{min-width:0;padding:0.5rem 0.7rem;animation:none;}
+      .badge-left{left:8px;bottom:10px;}
+      .badge-right{right:8px;top:auto;bottom:62px;}
+      .badge-val{font-size:0.82rem;}
       .badge-lbl{font-size:0.55rem;}
       .badge-sub{display:none;}
       .badge-icon-wrap{width:28px;height:28px;}
       .badge-icon-wrap svg{width:13px;height:13px;}
-      .hero-eyebrow{font-size:0.65rem;padding:0.26rem 0.65rem;max-width:100%;}
-      .hero-title{font-size:clamp(1.85rem,7.5vw,2.55rem);}
-      .hero-tagline{font-size:0.91rem;}
-      .hero-stats{gap:0.75rem;flex-wrap:wrap;}
-      .stat .stat-num{font-size:1.35rem;}
+      .hero-eyebrow{font-size:0.66rem;padding:0.28rem 0.7rem;max-width:100%;}
+      .hero-title{font-size:clamp(2.1rem,7.5vw,2.8rem);}
+      .hero-tagline{font-size:0.91rem;margin-bottom:1.25rem;}
+      .hero-stats{gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+      .stat .stat-num{font-size:1.4rem;}
       .stat .stat-label{font-size:0.69rem;}
       .hero-btns{gap:0.65rem;}
-      .btn-primary,.btn-secondary{padding:0.7rem 1.4rem;font-size:0.83rem;}
+      .btn-primary,.btn-secondary{padding:0.72rem 1.5rem;font-size:0.84rem;}
 
       /* ── About ── */
       .about-img-card{padding:1rem;}
@@ -903,7 +905,7 @@
     <button class="theme-btn" id="themeToggle" aria-label="Switch to light mode">Light</button>
     <button class="nav-resume-btn" onclick="downloadBothResumes()" aria-label="Download both resume versions">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Resume
+      Download CV
     </button>
     <a href="#contact" class="nav-cta">Hire Me</a>
   </div>
@@ -926,10 +928,10 @@
     <div class="hero-left">
       <div class="hero-eyebrow"><span class="dot"></span>Available · IBM Certified · Dhaka, BD</div>
       <h1 class="hero-title">
-        Data Scientist &<br>
-        <span class="line-accent" id="heroRole">AI Researcher</span>
+        Data Analyst &<br>
+        <span class="line-accent" id="heroRole">AI Engineer</span>
       </h1>
-      <p class="hero-tagline">IBM-Certified Data Scientist with dual internship experience and two in-progress ML publications — toolkit spanning data analytics, predictive modeling, and explainable AI — open to Data Analyst, Data Science, and research roles.</p>
+      <p class="hero-tagline">IBM-Certified Data Analyst & Data Scientist — turning raw data into actionable insight through analytics, dashboards, and predictive modelling. Learning AI engineering; future goal: building intelligent systems that power real decisions.</p>
       <div class="hero-stats">
         <div class="stat"><div class="stat-num" data-count="3.55" data-decimals="2">3.55</div><div class="stat-label">CGPA / 4.0</div></div>
         <div class="stat"><div class="stat-num" data-count="6" data-suffix="+">6+</div><div class="stat-label">Projects</div></div>
@@ -945,10 +947,6 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download CV
         </button>
-        <a href="#contact" class="btn-secondary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          Contact Me
-        </a>
       </div>
     </div>
     <div class="hero-right">
@@ -992,7 +990,7 @@
             <div class="about-name">Sameeul Khondoker Jisan</div>
             <div class="about-status">
               <span class="about-status-dot"></span>
-              <span class="about-role">Data Scientist | AI Engineer</span>
+              <span class="about-role">Data Analyst | Data Scientist | Future AI Engineer</span>
             </div>
             <div class="about-info-list">
               <div class="about-info-row">
@@ -1020,10 +1018,10 @@
         </div>
         <div class="about-content fade-in-up">
           <div class="section-eyebrow">About Me</div>
-          <h2 class="section-title">Turning Complex Data Into <span class="line-accent">Intelligent Insight</span></h2>
-          <p class="about-text">I'm a Data Science student at Daffodil International University (CGPA 3.55/4.00), majoring in Data Science. My work spans the full data lifecycle — from preprocessing and statistical modeling to deploying AI-powered applications and building intelligent ML systems.</p>
+          <h2 class="section-title">From Raw Data to <span class="line-accent">Intelligent Decisions</span></h2>
+          <p class="about-text">I'm a Data Analyst and Data Science student at Daffodil International University (CGPA 3.55/4.00). My primary focus is turning messy, real-world data into clear analytical insights — through EDA, dashboards, statistical modelling, and business intelligence. I'm actively deepening my data science and machine learning knowledge, with a long-term goal of becoming an AI Engineer who builds intelligent systems end-to-end.</p>
           <p class="about-text">Currently interning at <a href="https://www.linkedin.com/company/tecvix" target="_blank" rel="noopener noreferrer" style="color:var(--emerald);text-decoration:none;border-bottom:1px solid rgba(52,211,153,0.35);">TecVix</a> as a Data Science Intern, developing production ML pipelines with feature selection, predictive modelling, and statistical analysis to support data-driven product and BI research decisions. Previously interned at <a href="https://saiket.in/" target="_blank" rel="noopener noreferrer" style="color:var(--emerald);text-decoration:none;border-bottom:1px solid rgba(52,211,153,0.35);">SaiKet Systems</a>, processing 50K+ records and deploying 3 ML models via REST API. Actively pursuing research assistant positions, advanced internships, and graduate study in Data Science &amp; AI — with two in-progress publications on <a href="https://github.com/mrkhondoker/AI-Based-Predictive-Modeling-of-Individual-Carbon-Footprints" target="_blank" rel="noopener noreferrer" style="color:var(--emerald);text-decoration:none;border-bottom:1px solid rgba(52,211,153,0.35);">AI-based carbon footprint prediction</a> and the <a href="https://github.com/mrkhondoker/When-Machine-Learning-Models-Should-Not-Predict" target="_blank" rel="noopener noreferrer" style="color:var(--emerald);text-decoration:none;border-bottom:1px solid rgba(52,211,153,0.35);">effects of incomplete data on ML model performance</a>.</p>
-          <div class="about-highlight">"My goal is clear: become an AI Engineer and researcher who doesn't just use AI tools — but builds and studies the intelligent systems that power them. Every project, internship, and certification is a deliberate step toward that future."</div>
+          <div class="about-highlight">"Today: a Data Analyst who makes data speak. Tomorrow: an AI Engineer who makes systems think. Every project, internship, and certification is a deliberate step on that path."</div>
           <h4 style="font-family:'Outfit',sans-serif;margin:1.5rem 0 0.6rem;font-weight:800;">Research Interests</h4>
           <div class="ri-tags">
             <span class="ri-tag">ML &amp; Predictive Modelling</span>
@@ -1048,7 +1046,7 @@
             </div>
             <div class="edu-card">
               <div class="edu-degree">Secondary School Certificate (SSC)</div>
-              <div class="edu-school">Agargaon Adarsha High School · Science Group</div>
+              <div class="edu-school"><a href="https://aahs.edu.bd/" target="_blank" rel="noopener noreferrer" style="color:var(--emerald);text-decoration:none;">Agargaon Adarsha High School</a> · Science Group</div>
               <div class="edu-meta"><span class="edu-year">Jan 2017 – Feb 2019</span><span class="edu-gpa">3.89 / 5.00</span></div>
             </div>
           </div>
@@ -1625,7 +1623,7 @@
       <div class="contact-header fade-in-up">
         <div class="section-eyebrow">Let's Connect</div>
         <h2 class="contact-title">Let's Build Something <span class="line-accent">Brilliant</span></h2>
-        <p class="contact-desc">Open to data science roles, AI engineering collaborations, research partnerships, or just a great conversation about intelligent systems and generative AI.</p>
+        <p class="contact-desc">Open to data analyst roles, data science opportunities, AI engineering collaborations, research partnerships, or just a great conversation about intelligent systems.</p>
       </div>
       <div class="contact-avail fade-in-up">
         <div class="avail-pill">
@@ -1660,6 +1658,14 @@
               <div class="contact-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"/></svg></div>
               <div><div class="contact-link-title">X / Twitter</div><div class="contact-link-val">@Mr_Khondokar502</div></div>
             </a>
+            <a href="https://www.facebook.com/MrKhondokar040" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <div class="contact-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
+              <div><div class="contact-link-title">Facebook</div><div class="contact-link-val">MrKhondokar040</div></div>
+            </a>
+            <a href="https://www.threads.com/@mrkhondokar040" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <div class="contact-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7.5a7 7 0 00-7-5.5C7.477 2 4 6.248 4 12s3.477 10 8 10c4.418 0 7.75-3.582 8-8"/><path d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4"/><path d="M20 2l-2 2 2 2"/></svg></div>
+              <div><div class="contact-link-title">Threads</div><div class="contact-link-val">@mrkhondokar040</div></div>
+            </a>
           </div>
         </div>
         <div class="fade-in-up">
@@ -1678,9 +1684,9 @@
                 <label class="form-label" for="cf-subject">Subject</label>
                 <input id="cf-subject" name="subject" type="text" class="form-input" placeholder="Collaboration / Internship / Research" autocomplete="off" />
               </div>
-              <div class="form-row">
+              <div class="form-row" style="flex:1;display:flex;flex-direction:column;">
                 <label class="form-label" for="cf-message">Message</label>
-                <textarea id="cf-message" name="message" class="form-textarea" placeholder="Tell me about your project, opportunity, or idea..." required></textarea>
+                <textarea id="cf-message" name="message" class="form-textarea" placeholder="Tell me about your project, opportunity, or idea..." required style="flex:1;resize:none;"></textarea>
               </div>
               <button type="submit" class="form-submit" id="formSubmitBtn">Send Message ✈</button>
               <div id="formStatus" class="form-status"></div>
@@ -1695,12 +1701,13 @@
 <!-- Footer -->
 <footer>
   <div class="footer-logo">Sameeul Khondoker Jisan</div>
-  <div class="footer-tagline">Data Scientist · IBM Certified · Aspiring AI Engineer & Researcher</div>
+  <div class="footer-tagline">Data Analyst · Data Scientist · IBM Certified · Aspiring AI Engineer</div>
   <div class="footer-socials">
     <a href="https://linkedin.com/in/mrkhondokar504" target="_blank" rel="noopener noreferrer me" class="social-btn" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4.5a2.5 2.5 0 015 0V17M12 10v7"/></svg></a>
     <a href="https://github.com/mrkhondoker" target="_blank" rel="noopener noreferrer me" class="social-btn" title="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
     <a href="https://www.instagram.com/mrkhondokar040/" target="_blank" rel="noopener noreferrer" class="social-btn" title="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
     <a href="https://www.facebook.com/MrKhondokar040" target="_blank" rel="noopener noreferrer" class="social-btn" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+    <a href="https://www.threads.com/@mrkhondokar040" target="_blank" rel="noopener noreferrer" class="social-btn" title="Threads"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7.5a7 7 0 00-7-5.5C7.477 2 4 6.248 4 12s3.477 10 8 10c4.418 0 7.75-3.582 8-8"/><path d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4"/><path d="M20 2l-2 2 2 2"/></svg></a>
     <a href="https://x.com/Mr_Khondokar502" target="_blank" rel="noopener noreferrer" class="social-btn" title="X / Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"/></svg></a>
     <a href="https://wa.me/qr/REVX7G7CHBMGJ1" target="_blank" rel="noopener noreferrer" class="social-btn" title="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.003 2.003a9.997 9.997 0 00-8.497 15.26L2 22l4.875-1.479A9.997 9.997 0 1012.003 2.003z"/></svg></a>
   </div>
