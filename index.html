@@ -903,6 +903,11 @@
     /* Mobile dropdown :focus-within fallback */
     .nav-resume-wrap:focus-within .resume-dropdown{opacity:1;visibility:visible;transform:translateY(0);transition:opacity 0.2s ease,transform 0.2s ease,visibility 0s 0s;}
     .hero-resume-wrap:focus-within .hero-resume-dropdown{opacity:1;visibility:visible;transform:translateY(0);transition:opacity 0.2s ease,transform 0.2s ease,visibility 0s 0s;}
+    /* Awards: last chip spans full row when alone */
+    .award-chip:last-child:nth-child(odd){grid-column:1/-1;}
+    /* Copy-to-clipboard toast */
+    #toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(16px);background:var(--emerald);color:#fff;padding:0.55rem 1.25rem;border-radius:50px;font-size:0.81rem;font-weight:700;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.28s,transform 0.28s;white-space:nowrap;box-shadow:0 4px 18px rgba(52,211,153,0.35);letter-spacing:0.02em;}
+    #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
   </style>
   <!-- Respect OS dark/light preference on first load -->
   <script>
@@ -1039,7 +1044,7 @@
                 <div class="info-icon-wrap info-iw-pu"><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
                 <span>IELTS 7.0 Overall Band</span>
               </div>
-              <div class="about-info-row">
+              <div class="about-info-row" role="button" tabindex="0" onclick="copyEmail()" onkeydown="if(event.key==='Enter'||event.key===' ')copyEmail()" style="cursor:pointer;" title="Click to copy email">
                 <div class="info-icon-wrap info-iw-ro"><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
                 <span>mrkhondokar.prof@gmail.com</span>
               </div>
@@ -1691,10 +1696,10 @@
       <div class="contact-body">
         <div class="fade-in-up">
           <div class="contact-links">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mrkhondokar.prof@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <div class="contact-link" role="button" tabindex="0" onclick="copyEmail()" onkeydown="if(event.key==='Enter'||event.key===' ')copyEmail()" style="cursor:pointer;" title="Click to copy email address">
               <div class="contact-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
               <div><div class="contact-link-title">Gmail</div><div class="contact-link-val">mrkhondokar.prof@gmail.com</div></div>
-            </a>
+            </div>
             <a href="https://linkedin.com/in/mrkhondokar504" target="_blank" rel="noopener noreferrer me" class="contact-link">
               <div class="contact-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4.5a2.5 2.5 0 015 0V17M12 10v7"/></svg></div>
               <div><div class="contact-link-title">LinkedIn</div><div class="contact-link-val">linkedin.com/in/mrkhondokar504</div></div>
@@ -2283,6 +2288,22 @@
     document.querySelectorAll('.section-title').forEach(h => io.observe(h));
   })();
 
+  function copyEmail(){
+    const email='mrkhondokar.prof@gmail.com';
+    const t=document.getElementById('toast');
+    const show=()=>{t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(email).then(show).catch(()=>{fallbackCopy(email);show();});
+    } else { fallbackCopy(email); show(); }
+  }
+  function fallbackCopy(text){
+    const ta=document.createElement('textarea');
+    ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+    document.body.appendChild(ta);ta.focus();ta.select();
+    try{document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);
+  }
 </script>
+<div id="toast">Email copied!</div>
 </body>
 </html>
